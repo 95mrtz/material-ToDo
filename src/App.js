@@ -1,25 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Grid from '@mui/material/Grid';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-function App() {
+import Header from "./components/Header";
+import Main from "./components/Main";
+import Footer from "./components/Footer";
+
+import CssBaseline from "@mui/material/CssBaseline";
+
+const App = () => {
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'light',
+    },
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={darkTheme}>
+    <Grid
+      container
+      rowSpacing={2}
+      direction="column"
+      justifyContent="space-between"
+      alignItems="stretch"
+    >
+      <CssBaseline />
+      <Grid item xs={12}>
+        <Header />
+      </Grid>
+      <Grid item xs={12}>
+        <Main />
+      </Grid>
+      <Grid item xs={12}>
+        <Footer />
+      </Grid>
+    </Grid>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
+
+/*
+
+maxWidth="xl" fixed={true} xs={{
+      minHeight:'100vh',
+      height:1,
+      display:'flex',
+      flexDirection:'column',
+      justifyContent:'space-between',
+      backgroundColor:'red',
+    }} 
+
+    */
