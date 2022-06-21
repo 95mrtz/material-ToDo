@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
+import moment from 'moment';
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { Grid } from "@mui/material";
@@ -27,7 +28,7 @@ const Form = ({ task, setTask, list, setList, contador, setContador }) => {
     if(task !== ''){
       console.log("me renderice")
       setContador(contador + 1)
-    list.push( {task: task, id: contador})
+    list.push( {task: task, id: contador, date: moment().toArray()})
     setList(list);
     console.log(list)
     }

@@ -14,6 +14,8 @@ const Main = (props) => {
     const [task, setTask ] = useState('');
     const [ listTask, setListTask ] = useState([])
     const [ contador, setContador ] = useState(0)
+    const [ listCompleted, setListCompleted ] = useState([])
+
 
     console.log(task);
     console.log(listTask);
@@ -30,7 +32,7 @@ const Main = (props) => {
       </Grid>
       <Divider sx={{ width: 1 }} mt={2} mb={2} />
       <Grid item mt={4} mb={4}>
-        <ListTask list={listTask} setList={setListTask} />
+        <ListTask list={listTask} setList={setListTask} completed={listCompleted} setCompleted={setListCompleted} />
       </Grid>
       <Divider sx={{ width: 1 }} mt={2} mb={2} />
       <Grid item mt={4} mb={1}>
