@@ -15,9 +15,7 @@ const Title = ( { contador} ) => {
     <Box 
     mt={4}
     mb={3}
-    xs={{
-      backgroundColor:"red",
-    }}>
+    >
         <Typography variant="h2" mb={2} align="center">
             <span style={Style.title}>Organiza tus tareas</span> y disfruta del dia
         </Typography>
