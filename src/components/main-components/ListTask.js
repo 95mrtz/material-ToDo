@@ -18,18 +18,21 @@ import moment from "moment";
 const Style = {
   timexs: {
     fontSize: "12px",
-    color: "gray"
+    color: "gray",
+  },
+  clockIcon: {
+    margin: "0 5px",
+    fontSize: "16px",
+    color: "gray",
   },
   delete: {
-    cursor:"pointer",
-    color: "red"
-  }
-}
+    cursor: "pointer",
+    color: "red",
+  },
+};
 
 const ListTask = ({ listTask, setListTask, completed, setCompleted }) => {
-  const handleList = (e) => {
-    console.log(e.target.value);
-    console.log(listTask);
+  const handleCompleteTask = (e) => {
     const result = listTask?.filter((element) => {
       if (element.id !== Number(e.target.value)) {
         return element;
@@ -42,15 +45,22 @@ const ListTask = ({ listTask, setListTask, completed, setCompleted }) => {
     });
 
     setListTask(result);
-    console.log(listTask);
+  };
+
+  const handleDelete = (e) => {
+    const result = listTask?.filter(
+      (element) => element.id !== Number(e.target.value)
+    );
+
+    setListTask(result);
   };
 
   return (
     <Grid
       container
       direction="column"
-      pl={{ xs: 1, sm: 3, md: 7 }}
-      pr={{ xs: 1, sm: 3, md: 7 }}
+      pl={{ xs: 1, sm: 3, md: 7, lg: 9, xl: 15 }}
+      pr={{ xs: 1, sm: 3, md: 7, lg: 9, xl: 15 }}
       justifyContent="space-around"
       alignItems="stretch"
       xs="auto"
@@ -67,30 +77,26 @@ const ListTask = ({ listTask, setListTask, completed, setCompleted }) => {
         </Typography>
       ) : (
         <List>
-          {listTask.map((element) => (
-            <Grid item wrap="noWrap" xs="auto">
+          <Grid item noWrap>
+            {listTask.map((element) => (
               <ListItem
                 key={element.id}
                 id={element.id}
                 name={`task ${element.id}`}
-                secondaryAction={
-                    <DeleteIcon aria-label="delete" style={Style.delete} />
-                    
-                }
                 disablePadding
               >
                 <ListItemButton dense>
                   <ListItemIcon>
                     <Checkbox
                       icon={<CheckBoxOutlineBlankIcon />}
-                      edge="start"
+                      edge="end"
                       checked={false}
                       disableRipple
                       inputProps={{
                         "aria-labelledby": `checkbox-list-label-${element.id}`,
                       }}
                       value={element.id}
-                      onClick={handleList}
+                      onClick={handleCompleteTask}
                     />
                   </ListItemIcon>
                   <ListItemText
@@ -103,27 +109,41 @@ const ListTask = ({ listTask, setListTask, completed, setCompleted }) => {
                         alignItems="center"
                       >
                         <Grid item>
-                          <Typography variant="body1" noWrap={true}>
+                          <Typography variant="body1" noWrap={false}>
                             {element.task}
                           </Typography>
                         </Grid>
                         <Grid item>
-                            <Button
+                          <Button
                             style={Style.timexs}
-                              aria-label="time-ago"
-                              variant="text"
-                              startIcon={<AccessTimeIcon />}
-                            >
-                              {moment(element.date).fromNow()}
-                            </Button>
+                            aria-label="time-ago"
+                            variant="text"
+                          >
+                            <AccessTimeIcon style={Style.clockIcon} /> {moment(element.date).fromNow()}
+                          </Button>
+                          <Button>
+                            <ListItemIcon>
+                              <Checkbox
+                                icon={<DeleteIcon style={Style.delete} />}
+                                edge="end"
+                                checked={false}
+                                disableRipple
+                                inputProps={{
+                                  "aria-labelledby": `delete-task-list-label-${element.id}`,
+                                }}
+                                value={element.id}
+                                onClick={handleDelete}
+                              />
+                            </ListItemIcon>
+                          </Button>
                         </Grid>
                       </Grid>
                     }
                   />
                 </ListItemButton>
               </ListItem>
-            </Grid>
-          ))}
+            ))}
+          </Grid>
         </List>
       )}
     </Grid>

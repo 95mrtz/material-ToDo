@@ -51,7 +51,8 @@ const Main = (props) => {
       <Divider sx={{ width: 1 }} mt={2} mb={2} />
       <Grid item mt={4} mb={1} xs={12}>
         <ListCompleted
-          setList={setListTask}
+          listTask={listTask}
+          setListTask={setListTask}
           completed={listCompleted}
           setCompleted={setListCompleted}
         />

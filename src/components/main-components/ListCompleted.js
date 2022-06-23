@@ -4,7 +4,6 @@ import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import IconButton from "@mui/material/IconButton";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Checkbox from "@mui/material/Checkbox";
@@ -20,43 +19,82 @@ const Style = {
   taskCompleted: {
     textDecoration: "line-through",
   },
+  timexs: {
+    fontSize: "12px",
+    color: "gray",
+  },
+  clockIcon: {
+    margin: "0 5px",
+    fontSize: "16px",
+    color: "gray",
+  },
+  delete: {
+    cursor: "pointer",
+    color: "red",
+  },
 };
 
-const ListCompleted = ({ list, setList, completed, setCompleted }) => {
+const ListCompleted = ({ listTask, setListTask, completed, setCompleted }) => {
+  
+  const handleIncompleteTask = (e) => {
+    console.log(e.target.value)
+    const result = completed?.filter((element) => {
+      console.log("entre")
+      if (element.id !== Number(e.target.value)) {
+        console.log("se filtro el resultado")
+        return element;
+      }
+
+      if (element.id === Number(e.target.value)) {
+        console.log("entre para añadir a la otra lista")
+        listTask.push(element); 
+        setListTask(listTask);
+      }
+    });
+
+    console.log(listTask)
+    console.log(result)
+
+      setCompleted(result);
+
+    };
+  
+  const handleDelete = (e) => {
+    const result = completed?.filter(
+      (element) => element.id !== Number(e.target.value)
+    );
+
+    setCompleted(result);
+  };
+
   return (
     <Grid
       container
       direction="column"
-      rowSpacing={5}
-      pl={5}
-      pr={5}
-      justifyContent="space-between"
+      pl={{ xs: 1, sm: 3, md: 7, lg: 9, xl: 15 }}
+      pr={{ xs: 1, sm: 3, md: 7, lg: 9, xl: 15 }}
+      justifyContent="space-around"
       alignItems="stretch"
+      xs="auto"
     >
       <Grid item>
         <Typography variant="h3" align="center">
           Tareas realizadas
         </Typography>
       </Grid>
+
       {completed.length < 1 ? (
         <Typography variant="h5" align="center" mt={4}>
           No hay nada por acá, hora de completar tus tareas
         </Typography>
       ) : (
-        <Grid item>
-          <List>
+        <List>
+          <Grid item wrap="noWrap" xs="auto">
             {completed.map((element) => (
               <ListItem
                 key={element.id}
                 id={element.id}
                 name={`task ${element.id}`}
-                secondaryAction={
-                  <IconButton edge="end" aria-label="delete">
-                    <Button variant="outlined" startIcon={<DeleteIcon />}>
-                      Delete
-                    </Button>
-                  </IconButton>
-                }
                 disablePadding
               >
                 <ListItemButton dense>
@@ -70,6 +108,7 @@ const ListCompleted = ({ list, setList, completed, setCompleted }) => {
                         "aria-labelledby": `checkbox-list-label-${element.id}`,
                       }}
                       value={element.id}
+                      onClick={handleIncompleteTask}
                     />
                   </ListItemIcon>
                   <ListItemText
@@ -78,27 +117,41 @@ const ListCompleted = ({ list, setList, completed, setCompleted }) => {
                       <Grid
                         container
                         direction="row"
-                        justifyContent="space-around"
+                        justifyContent="space-between"
                         alignItems="center"
                       >
                         <Grid item>
                           <Typography
-                            variant="body1"
                             style={Style.taskCompleted}
-                            noWrap
+                            variant="body1"
+                            noWrap={true}
                           >
                             {element.task}
                           </Typography>
                         </Grid>
                         <Grid item>
-                          <IconButton edge="end" aria-label="time-ago">
-                            <Button
-                              variant="text"
-                              startIcon={<AccessTimeIcon />}
-                            >
-                              {moment(element.date).fromNow()}
-                            </Button>
-                          </IconButton>
+                          <Button
+                            style={Style.timexs}
+                            aria-label="time-ago"
+                            variant="text"
+                          >
+                            <AccessTimeIcon style={Style.clockIcon} /> {moment(element.date).fromNow()}
+                          </Button>
+                          <Button>
+                            <ListItemIcon>
+                              <Checkbox
+                                icon={<DeleteIcon style={Style.delete} />}
+                                edge="end"
+                                checked={false}
+                                disableRipple
+                                inputProps={{
+                                  "aria-labelledby": `delete-task-list-label-${element.id}`,
+                                }}
+                                value={element.id}
+                                onClick={handleDelete}
+                              />
+                            </ListItemIcon>
+                          </Button>
                         </Grid>
                       </Grid>
                     }
@@ -106,8 +159,8 @@ const ListCompleted = ({ list, setList, completed, setCompleted }) => {
                 </ListItemButton>
               </ListItem>
             ))}
-          </List>
-        </Grid>
+          </Grid>
+        </List>
       )}
     </Grid>
   );

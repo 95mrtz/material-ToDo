@@ -4,7 +4,7 @@ import moment from 'moment';
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { Grid } from "@mui/material";
-import { Box } from "@mui/system";
+import AddIcon from '@mui/icons-material/Add';
 import { useEffect } from "react";
 
 const validationSchema = yup.object({
@@ -17,9 +17,10 @@ const Form = ({ task, setTask, list, setList, contador, setContador }) => {
       task: '',
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
+    onSubmit: (values, {resetForm} ) => {
       alert(JSON.stringify(values, null, 2));
       setTask(values.task);
+      resetForm({ values: ''});
       // ver como volver el input a ''
     },
   });
@@ -40,14 +41,15 @@ const Form = ({ task, setTask, list, setList, contador, setContador }) => {
       <Grid
         container
         columnSpacing={2}
-        direction="row"
+        direction={{ xs: "column", md: "row"}}
         justifyContent="center"
         alignItems="center"
-        mt={4}
-        mb={4}
+        mt={{ xs: 1, sm: 4}}
+        mb={{ xs: 1, sm: 4}}
       >
-        <Grid item sx={{ width: 1/2 }}>
+        <Grid item sx={{ width:1/2 }} mb={{ xs: 4, sm: 0}}>
           <TextField
+            color="primary"
             id="task"
             name="task"
             label="Nueva tarea"
@@ -60,7 +62,7 @@ const Form = ({ task, setTask, list, setList, contador, setContador }) => {
           />
         </Grid>
         <Grid item>
-          <Button color="primary" variant="outlined" size="large" type="submit">
+          <Button color="primary" variant="contained" size="large" type="submit" endIcon={<AddIcon />}>
             Agregar tarea
           </Button>
         </Grid>
