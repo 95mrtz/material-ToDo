@@ -2,28 +2,31 @@ import PropTypes from "prop-types";
 
 //Material UI
 
-import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import MenuIcon from "@mui/icons-material/Menu";
-import Toolbar from "@mui/material/Toolbar";
+import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-
 
 const Footer = (props) => {
-  
   return (
-    <Box component="footer" sx={{ width: '100%', height: "40px", backgroundColor: "gray"}}>
-       <Typography>
-        Footer
-        </Typography> 
+    <Box
+      component="footer"
+      sx={{ width: "100%", height: "80px", backgroundColor: "#1976D2", color:"white", fontWeight: 900, display: "flex", justifyContent: "center"}}
+    >
+      <Grid container
+      direction="row"
+      justifyContent="space-around"
+      alignItems="center"
+      >
+        <Grid item>
+          <Typography>
+            Este proyecto fue creado con React JS, Material UI, formik y
+            moment.js
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Typography> Dev: Manuel Ortiz </Typography>
+        </Grid>
+      </Grid>
     </Box>
   );
 };

@@ -21,19 +21,25 @@ import Button from "@mui/material/Button";
 
 import GitHubIcon from "@mui/icons-material/GitHub";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import LogoDevIcon from "@mui/icons-material/LogoDev";
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
 
 const drawerWidth = 240;
 
 const Style = {
+  titleLogo: {
+    fontWeight: 900,
+  },
   iconLink: {
-    color: "black",
+    color: "white",
   },
   textLink: {
     textDecoration: "none",
     fontWeight: 700,
-    color: "gray"
-  }
+    color: "gray",
+  },
 };
 
 const Header = (props) => {
@@ -45,7 +51,7 @@ const Header = (props) => {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} xs={{bgcolor: "blue"}}>
+    <Box onClick={handleDrawerToggle} xs={{ bgcolor: "blue" }}>
       <Typography variant="h6" sx={{ my: 2 }} align="center">
         Material To Do
       </Typography>
@@ -57,12 +63,12 @@ const Header = (props) => {
         alignItems="center"
       >
         <List>
-          <Grid item mt={2} mb={2} color="primary">
+          <Grid item mt={2} mb={2}>
             <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <GitHubIcon />
-              </ListItemIcon>
+              <ListItemButton>
+                <ListItemIcon>
+                  <GitHubIcon />
+                </ListItemIcon>
                 <ListItemText>
                   <a
                     style={Style.textLink}
@@ -76,7 +82,26 @@ const Header = (props) => {
               </ListItemButton>
             </ListItem>
           </Grid>
-          <Grid item mt={2} mb={2} xs={{ width: 1 }}>
+          <Grid item mt={2} mb={2}>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <LinkedInIcon />
+                </ListItemIcon>
+                <ListItemText>
+                  <a
+                    style={Style.textLink}
+                    href="https://www.linkedin.com/in/hctmanuelortiz/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    LinkedIn
+                  </a>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+          </Grid>
+          <Grid item mt={2} mb={2}>
             <ListItemButton>
               <ListItem disablePadding>
                 <ListItemIcon>
@@ -113,7 +138,19 @@ const Header = (props) => {
               </ListItemText>
             </ListItemButton>
           </Grid>
-          <ListItem disablePadding></ListItem>
+          <Grid item mt={2} mb={2}>
+            <ListItemButton>
+              <ListItemText align="center">
+                <ListItemIcon>
+                  <LogoDevIcon />
+                </ListItemIcon>
+                <Typography align="center">
+                  Este proyecto fue creado con React JS, Material UI, formik y
+                  moment.js
+                </Typography>
+              </ListItemText>
+            </ListItemButton>
+          </Grid>
         </List>
       </Grid>
     </Box>
@@ -123,7 +160,7 @@ const Header = (props) => {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box component="header" sx={{ display: "flex" }} >
+    <Box component="header" sx={{ display: "flex" }}>
       <AppBar color="primary" component="nav" position="sticky">
         <Toolbar>
           <IconButton
@@ -135,9 +172,16 @@ const Header = (props) => {
           >
             <MenuIcon />
           </IconButton>
+          <IconButton
+            color="inherit"
+            sx={{ mr: 2, display: { xs: "none", sm: "block" } }}
+          >
+            <TaskAltIcon />
+          </IconButton>
           <Typography
-            variant="h6"
+            variant="h5"
             component="div"
+            style={Style.titleLogo}
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
             Material To Do
@@ -151,6 +195,16 @@ const Header = (props) => {
                 rel="noreferrer"
               >
                 <GitHubIcon />
+              </a>
+            </Button>
+            <Button sx={{ color: "#fff" }}>
+              <a
+                style={Style.iconLink}
+                href="https://www.linkedin.com/in/hctmanuelortiz/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <LinkedInIcon />
               </a>
             </Button>
             <Button sx={{ color: "#fff" }}>

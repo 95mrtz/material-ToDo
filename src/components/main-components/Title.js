@@ -5,7 +5,15 @@ import Typography from '@mui/material/Typography';
 
 const Style = {
   title: {
-    fontWeight: 700,
+    fontWeight: 900,
+    color: "#1976D2",
+  },
+  subtitle:{
+    fontWeight: 300,
+  },
+  contador: {
+    fontWeight: 600,
+    color: "#1976D2",
   }
 }
 
@@ -13,17 +21,17 @@ const Title = ( { contador} ) => {
   
   return (
     <Box 
-    mt={4}
-    mb={3}
+    mt={2}
+    mb={1}
     >
         <Typography variant="h2" mb={2} align="center">
-            <span style={Style.title}>Organiza tus tareas</span> y disfruta del dia
+            <span style={Style.title}>Organiza</span> tu vida, <span style={Style.title}>completa</span> tus tareas y <span style={Style.title}>disfruta</span> del dia
         </Typography>
-        <Typography variant="h3" align="center">
-            Conseguir tus metas diarias para un dia mucho mas productivo 
+        <Typography variant="h4" align="center" style={Style.subtitle}>
+            Conseguir tus metas diarias te ayudara a tener un dia mucho mas productivo 
         </Typography>
-        <Typography variant="h5" align="center" mt={4}>
-            Has agregado un total de: {contador} tareas
+        <Typography variant="h5" align="center" mt={4} style={Style.subtitle}>
+            Has agregado un total de: <span style={Style.contador}> {contador} tareas</span>
         </Typography>
     </Box>
   );
