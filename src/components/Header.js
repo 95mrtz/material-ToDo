@@ -52,7 +52,7 @@ const Header = (props) => {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} xs={{ bgcolor: "blue" }}>
-      <Typography variant="h6" sx={{ my: 2 }} align="center">
+      <Typography variant="h6" sx={{ my: 2 }} align="center" color="primary" fontWeight={900}>
         Material To Do
       </Typography>
       <Divider />
@@ -67,7 +67,7 @@ const Header = (props) => {
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  <GitHubIcon />
+                  <GitHubIcon  color="primary" />
                 </ListItemIcon>
                 <ListItemText>
                   <a
@@ -86,7 +86,7 @@ const Header = (props) => {
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  <LinkedInIcon />
+                  <LinkedInIcon  color="primary" />
                 </ListItemIcon>
                 <ListItemText>
                   <a
@@ -105,7 +105,7 @@ const Header = (props) => {
             <ListItemButton>
               <ListItem disablePadding>
                 <ListItemIcon>
-                  <TwitterIcon />
+                  <TwitterIcon  color="primary" />
                 </ListItemIcon>
                 <ListItemText>
                   <a
@@ -125,7 +125,7 @@ const Header = (props) => {
             <ListItemButton>
               <ListItemText>
                 <ListItemIcon>
-                  <AutoAwesomeIcon />
+                  <AutoAwesomeIcon color="primary" />
                 </ListItemIcon>
                 <a
                   style={Style.textLink}
@@ -142,7 +142,7 @@ const Header = (props) => {
             <ListItemButton>
               <ListItemText align="center">
                 <ListItemIcon>
-                  <LogoDevIcon />
+                  <LogoDevIcon  color="primary" />
                 </ListItemIcon>
                 <Typography align="center">
                   Este proyecto fue creado con React JS, Material UI, formik y

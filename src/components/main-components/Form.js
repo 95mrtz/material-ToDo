@@ -44,10 +44,10 @@ const Form = ({ task, setTask, list, setList, contador, setContador }) => {
         direction={{ xs: "column", md: "row"}}
         justifyContent="center"
         alignItems="center"
-        mt={{ xs: 1, sm: 4}}
-        mb={{ xs: 1, sm: 4}}
+        mt={{ xs: 1, sm: 2}}
+        mb={{ xs: 1, sm: 2}}
       >
-        <Grid item sx={{ width:1/2 }} mb={{ xs: 4, sm: 0}}>
+        <Grid item sx={{ width:1/2 }} mb={{ xs: 4, sm: 3, md: 0}}>
           <TextField
             color="primary"
             id="task"

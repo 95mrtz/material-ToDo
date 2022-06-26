@@ -10,7 +10,7 @@ import Title from "./main-components/Title";
 import ListTask from "./main-components/ListTask";
 import ListCompleted from "./main-components/ListCompleted";
 
-const Main = (props) => {
+const Main = () => {
   const [task, setTask] = useState("");
   const [listTask, setListTask] = useState([]);
   const [contador, setContador] = useState(0);
@@ -26,10 +26,10 @@ const Main = (props) => {
       justifyContent="space-between"
       alignItems="stretch"
     >
-      <Grid item mt={1} mb={4}>
+      <Grid item>
         <Title contador={contador} />
       </Grid>
-      <Grid item mt={4} mb={4}>
+      <Grid item mt={2} mb={4}>
         <Form
           task={task}
           setTask={setTask}
@@ -39,7 +39,7 @@ const Main = (props) => {
           setContador={setContador}
         />
       </Grid>
-      <Divider sx={{ width: 1 }} mt={2} mb={2} alignSelf="center" />
+      <Divider sx={{ width: 1 }} mt={3} mb={3} />
       <Grid item mt={4} mb={4}>
         <ListTask
           listTask={listTask}
@@ -49,7 +49,7 @@ const Main = (props) => {
         />
       </Grid>
       <Divider sx={{ width: 1 }} mt={2} mb={2} />
-      <Grid item mt={4} mb={1} xs={12}>
+      <Grid item>
         <ListCompleted
           listTask={listTask}
           setListTask={setListTask}
@@ -59,10 +59,6 @@ const Main = (props) => {
       </Grid>
     </Grid>
   );
-};
-
-Main.propTypes = {
-  window: PropTypes.func,
 };
 
 export default Main;

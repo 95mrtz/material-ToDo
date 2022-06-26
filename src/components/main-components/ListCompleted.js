@@ -16,8 +16,13 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import moment from "moment";
 
 const Style = {
+  colorText:{
+    color: "#757575"
+  },
   taskCompleted: {
     textDecoration: "line-through",
+    fontWeight: 600,
+    color: "#757575"
   },
   timexs: {
     fontSize: "12px",
@@ -35,30 +40,27 @@ const Style = {
 };
 
 const ListCompleted = ({ listTask, setListTask, completed, setCompleted }) => {
-  
   const handleIncompleteTask = (e) => {
-    console.log(e.target.value)
+    console.log(e.target.value);
     const result = completed?.filter((element) => {
-      console.log("entre")
+      console.log("entre");
       if (element.id !== Number(e.target.value)) {
-        console.log("se filtro el resultado")
+        console.log("se filtro el resultado");
         return element;
       }
 
       if (element.id === Number(e.target.value)) {
-        console.log("entre para añadir a la otra lista")
-        listTask.push(element); 
+        listTask.push(element);
         setListTask(listTask);
       }
     });
 
-    console.log(listTask)
-    console.log(result)
+    console.log(listTask);
+    console.log(result);
 
-      setCompleted(result);
+    setCompleted(result);
+  };
 
-    };
-  
   const handleDelete = (e) => {
     const result = completed?.filter(
       (element) => element.id !== Number(e.target.value)
@@ -73,18 +75,31 @@ const ListCompleted = ({ listTask, setListTask, completed, setCompleted }) => {
       direction="column"
       pl={{ xs: 1, sm: 3, md: 7, lg: 9, xl: 15 }}
       pr={{ xs: 1, sm: 3, md: 7, lg: 9, xl: 15 }}
+      mb={{ xs: 3 }}
       justifyContent="space-around"
       alignItems="stretch"
-      xs="auto"
     >
       <Grid item>
-        <Typography variant="h3" align="center">
+        <Typography
+          variant="h3"
+          color="primary"
+          fontWeight={{ xs: 700, sm: 800, md: 900 }}
+          fontSize={{ xs: 20, sm: 30, md: 38, lg: 45 }}
+          align="center"
+        >
           Tareas realizadas
         </Typography>
       </Grid>
 
       {completed.length < 1 ? (
-        <Typography variant="h5" align="center" mt={4}>
+        <Typography
+          variant="body1"
+          fontWeight={{ xs: 500 }}
+          fontSize={{ xs: 15, sm: 20, md: 25, lg: 30 }}
+          align="center"
+          mt={4}
+          style={Style.colorText}
+        >
           No hay nada por acá, hora de completar tus tareas
         </Typography>
       ) : (
@@ -117,14 +132,14 @@ const ListCompleted = ({ listTask, setListTask, completed, setCompleted }) => {
                       <Grid
                         container
                         direction="row"
-                        justifyContent="space-between"
+                        justifyContent={{xs: "center", md: "space-between" }}
                         alignItems="center"
                       >
                         <Grid item>
                           <Typography
                             style={Style.taskCompleted}
                             variant="body1"
-                            noWrap={true}
+                            wrap
                           >
                             {element.task}
                           </Typography>
@@ -134,13 +149,15 @@ const ListCompleted = ({ listTask, setListTask, completed, setCompleted }) => {
                             style={Style.timexs}
                             aria-label="time-ago"
                             variant="text"
+                            fontWeight={{xs: 700}}
                           >
-                            <AccessTimeIcon style={Style.clockIcon} /> {moment(element.date).fromNow()}
+                            <AccessTimeIcon style={Style.clockIcon} />{" "}
+                            {moment(element.date).fromNow()}
                           </Button>
                           <Button>
                             <ListItemIcon>
                               <Checkbox
-                                icon={<DeleteIcon style={Style.delete} />}
+                                icon={<DeleteIcon color="action" />}
                                 edge="end"
                                 checked={false}
                                 disableRipple
