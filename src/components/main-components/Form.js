@@ -18,22 +18,17 @@ const Form = ({ task, setTask, list, setList, contador, setContador }) => {
     },
     validationSchema: validationSchema,
     onSubmit: (values, {resetForm} ) => {
-      alert(JSON.stringify(values, null, 2));
       setTask(values.task);
       resetForm({ values: ''});
-      // ver como volver el input a ''
     },
   });
 
   useEffect( () => {
     if(task !== ''){
-      console.log("me renderice")
       setContador(contador + 1)
     list.push( {task: task, id: contador, date: moment().toArray()})
     setList(list);
-    console.log(list)
     }
-    console.log("me rendecire pero no entre a la funcion [ EN FORM ] ")
   }, [task]);
 
   return (

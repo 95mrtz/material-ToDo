@@ -41,11 +41,9 @@ const Style = {
 
 const ListCompleted = ({ listTask, setListTask, completed, setCompleted }) => {
   const handleIncompleteTask = (e) => {
-    console.log(e.target.value);
+
     const result = completed?.filter((element) => {
-      console.log("entre");
       if (element.id !== Number(e.target.value)) {
-        console.log("se filtro el resultado");
         return element;
       }
 
@@ -55,8 +53,6 @@ const ListCompleted = ({ listTask, setListTask, completed, setCompleted }) => {
       }
     });
 
-    console.log(listTask);
-    console.log(result);
 
     setCompleted(result);
   };

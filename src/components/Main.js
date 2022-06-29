@@ -16,8 +16,6 @@ const Main = () => {
   const [contador, setContador] = useState(0);
   const [listCompleted, setListCompleted] = useState([]);
 
-  console.log(task);
-  console.log(listTask);
   return (
     <Grid
       container
